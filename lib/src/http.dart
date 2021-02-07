@@ -15,7 +15,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:path/path.dart';
-import 'package:pool/pool.dart';
 import 'package:async/async.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
@@ -29,15 +28,14 @@ class Fetch extends http.BaseClient {
     this.maxRedirects = 5,
   })  : assert(maxActiveRequests > 0),
         assert(followRedirects != null),
-        _pool = Pool(maxActiveRequests),
         _client = HttpClient()
           ..findProxy = proxy != null ? ((_) => proxy) : null
+          ..maxConnectionsPerHost = maxActiveRequests
           ..autoUncompress = autoUncompress;
 
   final bool followRedirects;
   final int maxRedirects;
 
-  final Pool _pool;
   final HttpClient _client;
   final Cookies _cookies = Cookies();
 
@@ -93,20 +91,17 @@ class Fetch extends http.BaseClient {
       return response;
     }
 
-    PoolResource resource = await _pool.request();
     http.StreamedResponse response;
     try {
       response = await _send(request,
           cookieList: await _cookies.get(uri: request.url));
     } catch (_) {
-      resource.release();
       rethrow;
     }
 
     Stream<List<int>> stream = response.stream.transform(
       StreamTransformer<List<int>, List<int>>.fromHandlers(
         handleDone: (sink) {
-          resource.release();
           sink.close();
         },
       ),

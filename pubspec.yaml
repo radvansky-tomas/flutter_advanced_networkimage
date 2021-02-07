@@ -3,19 +3,21 @@ description: An advanced image provider provides caching and retrying for flutte
 version: 0.8.0
 homepage: https://github.com/mchome/flutter_advanced_networkimage
 
+environment:
+  sdk: '>=2.10.0 <3.0.0'
+  flutter: ">=1.10.0 <2.0.0"
+
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.12.2
-  path_provider: ^1.6.11
-  path: ^1.7.0
-  flutter_svg: ^0.18.1
+  http: ^0.12.1
+  path_provider: ^1.6.27
+  path: 1.8.0
+  flutter_svg: 0.19.2+1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  test: "^1.9.0"
 
-environment:
-  sdk: ">=2.3.0 <3.0.0"
-  flutter: ">=1.10.0 <2.0.0"
+dependency_overrides:
+  path: 1.8.0

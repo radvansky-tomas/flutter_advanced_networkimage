@@ -2,11 +2,9 @@ import 'dart:io';
 import 'dart:convert';
 
 import 'package:path/path.dart';
-import 'package:test/test.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:flutter_test/flutter_test.dart'
-    show TestWidgetsFlutterBinding, throwsAssertionError;
+import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_advanced_networkimage/src/disk_cache.dart';
 import 'package:flutter_advanced_networkimage/src/utils.dart';
