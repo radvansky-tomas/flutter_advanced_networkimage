@@ -11,13 +11,13 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^0.12.1
-  path_provider: ^1.6.27
+  path_provider: ^2.0.0
   path: 1.8.0
-  flutter_svg: 0.19.2+1
+  flutter_svg: 0.19.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-dependency_overrides:
-  path: 1.8.0
+#dependency_overrides:
+#  path: 1.8.0
